@@ -1,0 +1,130 @@
+---
+import { Image } from 'astro:assets';
+
+import { siteMetadata } from '../../astro.config.mjs';
+import AvatorImage from '../images/bio/uetyo.png';
+import XIcon from '../images/bio/x.svg';
+import GitHubIcon from '../images/bio/github.svg';
+import SpeakerDeckIcon from '../images/bio/speaker_deck.svg';
+
+const { author, bioText, social } = siteMetadata;
+---
+
+<div class="bio-wrapper">
+  <div class="bio-header">
+    <Image src={AvatorImage} alt={author} class="avatar-image" />
+    <div class="bio-name">
+      <a href={`https://x.com/${social.x}`} rel="nofollow noopener noreferrer" target="_blank">{author}</a>
+    </div>
+  </div>
+  <div class="bio-main">
+    <p class="bio-text">
+      {bioText}
+    </p>
+    <div class="bio-links">
+      <a href={`https://x.com/${social.x}`} rel="nofollow noopener noreferrer" target="_blank" class="bio-link">
+        <XIcon />
+        <div>X</div>
+      </a>
+      <a href={`https://github.com/${social.github}`} rel="nofollow noopener noreferrer" target="_blank" class="bio-link">
+        <GitHubIcon />
+        <div>GitHub</div>
+      </a>
+      <a href={`https://speakerdeck.com/${social.speakerDeck}`} rel="nofollow noopener noreferrer" target="_blank" class="bio-link">
+        <SpeakerDeckIcon />
+        <div>SpeakerDeck</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .bio-wrapper {
+    position: sticky;
+    top: 2em;
+    width: 300px; /* theme.sizes.bioWidth */
+    padding: 1.5em;
+    font-size: 15.5px;
+    background: #2a2d35; /* theme.colors.blackLight */
+    border-radius: 15px;
+  }
+
+  @media screen and (max-width: 1100px) { /* theme.responsive.large */
+    .bio-wrapper {
+      position: relative;
+      margin: 2em 0;
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 600px) { /* theme.responsive.small */
+    .bio-wrapper {
+      padding: 1.3em 1em;
+    }
+  }
+
+  .avatar-image {
+    display: block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+  }
+
+  .bio-header {
+    display: flex;
+    align-items: center;
+  }
+
+  .bio-name {
+    margin-left: 10px;
+  }
+
+  .bio-name a {
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 1.3em;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .bio-main {
+    margin-top: 1em;
+  }
+
+  .bio-text {
+    color: #fff;
+    font-size: 0.92em;
+  }
+
+  .bio-links {
+    margin-top: 1.5em;
+    color: #fff;
+    text-align: center;
+    max-width: 244px;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .bio-links img,
+  .bio-links svg {
+    display: block;
+    margin: 0 auto;
+    width: 40px;
+    height: 33px;
+  }
+
+  .bio-link {
+    display: block;
+    font-weight: 700;
+    font-size: 0.9em;
+    line-height: 30px;
+    color: #999; /* theme.colors.gray */
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+
+  .bio-link:hover {
+    color: #007ab8; /* theme.colors.highlight */
+  }
+</style>
