@@ -1,0 +1,130 @@
+---
+import { siteConfig } from '../config';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Bio from '../components/bio.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  isHome?: boolean;
+}
+
+const {
+  title,
+  description = siteConfig.description,
+  ogImage = `${siteConfig.siteUrl}/images/ogp_large.png`,
+  isHome = false,
+} = Astro.props;
+
+const pageTitle = title
+  ? `${title} | ${siteConfig.title}`
+  : siteConfig.defaultTitle;
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/images/siteicon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- SEO -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title || siteConfig.defaultTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content={siteConfig.author} />
+    <meta name="twitter:title" content={title || siteConfig.defaultTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="google-site-verification" content="tPbbYBIkS-hMJ6JCXihoxuipkMX5q1QnyQ-6R_kvkYs" />
+
+    <!-- Vercel Analytics -->
+    <script>
+      import '@vercel/analytics';
+      import '@vercel/speed-insights';
+    </script>
+
+    <slot name="head" />
+  </head>
+  <body>
+    <div class="site-root">
+      <Header title={siteConfig.title} isHome={isHome} />
+      <div class="content-wrapper">
+        <div class="content">
+          <div class="main-wrapper">
+            <main>
+              <slot />
+            </main>
+          </div>
+          <Bio />
+        </div>
+      </div>
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style>
+  .content-wrapper {
+    max-width: var(--size-max-width);
+    margin: 0 auto;
+    padding: 0 var(--side-space-large);
+  }
+
+  @media screen and (max-width: 950px) {
+    .content-wrapper {
+      max-width: 760px;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .content-wrapper {
+      padding: 0 var(--side-space-small);
+    }
+  }
+
+  .content {
+    margin-top: 1rem;
+    display: flex;
+    min-height: 85vh;
+    align-items: flex-start;
+  }
+
+  @media screen and (max-width: 950px) {
+    .content {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .content {
+      margin-top: 0.5rem;
+    }
+  }
+
+  .main-wrapper {
+    width: calc(100% - var(--size-bio-width) - 40px);
+    margin-right: 40px;
+  }
+
+  @media screen and (max-width: 950px) {
+    .main-wrapper {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+</style>

@@ -1,0 +1,99 @@
+---
+interface Post {
+  slug: string;
+  title: string;
+  date: string;
+  emoji: string;
+}
+
+interface Props {
+  posts: Post[];
+}
+
+const { posts } = Astro.props;
+---
+
+{posts.length > 0 && (
+  <div class="related-wrapper">
+    {posts.map((post) => (
+      <div class="related-card">
+        <a href={`/${post.slug}/`} class="post-card-link">
+          <p class="post-card-emoji">{post.emoji}</p>
+          <div class="post-card-content">
+            <h5>{post.title}</h5>
+            <time>{post.date}</time>
+          </div>
+        </a>
+      </div>
+    ))}
+  </div>
+)}
+
+<style>
+  .related-wrapper {
+    background: var(--color-whitesmoke);
+    padding: 2em var(--side-space-content-large);
+  }
+
+  @media screen and (max-width: 500px) {
+    .related-wrapper {
+      padding: 30px var(--side-space-content-small);
+    }
+  }
+
+  .post-card-link {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.3em;
+    padding: 15px;
+    background: #fff;
+    border-radius: 14px;
+    color: var(--color-black-light);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: 500px) {
+    .post-card-link {
+      padding: 10px;
+    }
+  }
+
+  .post-card-emoji {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 80px;
+    height: 80px;
+    background: var(--color-whitesmoke);
+    border-radius: 10px;
+    font-size: 50px;
+    flex-shrink: 0;
+  }
+
+  .post-card-content {
+    width: calc(100% - 80px);
+    padding-left: 15px;
+  }
+
+  .post-card-content h5 {
+    font-size: 1.1em;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
+  .post-card-content time {
+    display: block;
+    margin-bottom: 0.1em;
+    letter-spacing: 0.05em;
+    font-size: 0.8em;
+    color: var(--color-silver);
+  }
+
+  @media screen and (max-width: 500px) {
+    .post-card-content h5 {
+      font-size: 1em;
+    }
+  }
+</style>

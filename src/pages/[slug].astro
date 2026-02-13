@@ -1,0 +1,192 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CategoryLabel from '../components/CategoryLabel.astro';
+import ShareButtons from '../components/ShareButtons.astro';
+import FollowBadge from '../components/FollowBadge.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import { siteConfig, getCategoryBySlug } from '../config';
+import { formatDate, getSlug } from '../lib/utils';
+import '../styles/post-content.css';
+
+export async function getStaticPaths() {
+  const allPosts = (await getCollection('blog'))
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+  // Build related posts map (max 5 per category, excluding self)
+  const postsByCategory: Record<string, typeof allPosts> = {};
+  for (const post of allPosts) {
+    const cat = post.data.category;
+    if (!postsByCategory[cat]) postsByCategory[cat] = [];
+    postsByCategory[cat].push(post);
+  }
+
+  return allPosts.map((post) => {
+    const related = (postsByCategory[post.data.category] || [])
+      .filter((p) => p.id !== getSlug(post.id))
+      .slice(0, 4)
+      .map((p) => ({
+        slug: getSlug(p.id),
+        title: p.data.title,
+        date: formatDate(p.data.date),
+        emoji: p.data.emoji,
+      }));
+
+    return {
+      params: { slug: getSlug(getSlug(post.id)) },
+      props: { post, relatedPosts: related },
+    };
+  });
+}
+
+const { post, relatedPosts } = Astro.props;
+const { Content } = await render(post);
+const { title, description, date, category, emoji } = post.data;
+const formattedDate = formatDate(date);
+const categoryObj = getCategoryBySlug(category);
+const categoryName = categoryObj?.name ?? category;
+const pageUrl = `${siteConfig.siteUrl}/${getSlug(post.id)}/`;
+const dateFormatted = date.replace(/-/g, '-');
+---
+
+<BaseLayout title={title} description={description}>
+  <Fragment slot="head">
+    <link rel="canonical" href={`https://blog.ue-y.me/${getSlug(post.id)}/`} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      headline: title,
+      image: `${siteConfig.siteUrl}/images/ogp_large.png`,
+      editor: siteConfig.author,
+      url: pageUrl,
+      datePublished: dateFormatted,
+      dateCreated: dateFormatted,
+      dateModified: dateFormatted,
+      description: description,
+      author: {
+        "@type": "Person",
+        name: siteConfig.author,
+        image: `${siteConfig.siteUrl}/images/avatar.png`,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: siteConfig.author,
+        logo: {
+          "@type": "ImageObject",
+          url: `${siteConfig.siteUrl}/images/avatar.png`,
+          width: 150,
+          height: 150,
+        },
+      },
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          item: { "@id": siteConfig.siteUrl, name: "HOME" },
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          item: { "@id": `${siteConfig.siteUrl}/${category}`, name: categoryName },
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          item: { "@id": pageUrl, name: title },
+        },
+      ],
+    })} />
+  </Fragment>
+
+  <section class="post-section">
+    <div class="hero-image">
+      <span class="emoji">{emoji}</span>
+    </div>
+    <div class="content-main">
+      <time class="post-date">{formattedDate}</time>
+      <h1 class="post-title">{title}</h1>
+      <CategoryLabel slug={category} isLink={true} />
+      <div class="post-content">
+        <Content />
+      </div>
+      <FollowBadge />
+      <ShareButtons slug={getSlug(post.id)} title={title} emoji={emoji} />
+    </div>
+    <aside>
+      <RelatedPosts posts={relatedPosts} />
+    </aside>
+  </section>
+</BaseLayout>
+
+<style>
+  .post-section {
+    position: relative;
+    overflow: hidden;
+    font-size: 16px;
+    border-radius: 15px;
+  }
+
+  @media screen and (max-width: 500px) {
+    .post-section {
+      margin: 0 calc(-1 * var(--side-space-small));
+    }
+  }
+
+  .hero-image {
+    position: relative;
+    background: var(--color-black-light);
+    text-align: center;
+    background-repeat: repeat;
+    background-size: 400px;
+    min-height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 500px) {
+    .hero-image {
+      min-height: 190px;
+    }
+  }
+
+  .hero-image .emoji {
+    font-size: 110px;
+    line-height: 1;
+  }
+
+  .content-main {
+    padding: 1.8em var(--side-space-content-large);
+    background: #fff;
+  }
+
+  @media screen and (max-width: 500px) {
+    .content-main {
+      padding: 30px var(--side-space-content-small);
+    }
+  }
+
+  .post-title {
+    margin: 0.1em 0 0.3em;
+    font-size: 1.8em;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  @media screen and (max-width: 500px) {
+    .post-title {
+      font-size: 25px;
+    }
+  }
+
+  .post-date {
+    display: block;
+    color: var(--color-silver);
+    font-size: 0.9em;
+    letter-spacing: 0.05em;
+  }
+</style>
