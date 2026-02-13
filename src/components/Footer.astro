@@ -1,0 +1,49 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-wrapper">
+    <div class="footer-inner">
+      <div>&copy; {year}, Yuki UEHARA All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 0.1em 0;
+  }
+
+  .footer-wrapper {
+    max-width: var(--size-max-width);
+    margin: 0 auto;
+    padding: 0 var(--side-space-large);
+  }
+
+  @media screen and (max-width: 950px) {
+    .footer-wrapper {
+      max-width: 760px;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .footer-wrapper {
+      padding: 0 var(--side-space-small);
+    }
+  }
+
+  .footer-inner {
+    margin-top: 3em;
+    text-align: center;
+    padding: 1.5em;
+    border-top: solid 1px var(--color-black-light);
+    color: var(--color-gray);
+    font-size: 14px;
+  }
+
+  .footer-inner a {
+    color: var(--color-gray);
+    text-decoration: underline;
+  }
+</style>

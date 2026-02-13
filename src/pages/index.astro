@@ -1,17 +1,63 @@
 ---
-import Bio from '../components/bio.astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import CategoryMenu from '../components/CategoryMenu.astro';
+import { siteConfig } from '../config';
+import { formatDate, getSlug } from '../lib/utils';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-		<Bio />
-	</body>
-</html>
+<BaseLayout isHome={true}>
+  <Fragment slot="head">
+    <link rel="canonical" href="https://blog.ue-y.me" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      image: {
+        "@type": "ImageObject",
+        url: `${siteConfig.siteUrl}/images/ogp_large.png`,
+        height: 1200,
+        width: 630,
+      },
+      url: siteConfig.siteUrl,
+      name: siteConfig.title,
+      author: {
+        "@type": "Person",
+        name: siteConfig.author,
+      },
+      description: siteConfig.description,
+      publisher: {
+        "@type": "Organization",
+        name: siteConfig.author,
+        logo: {
+          "@type": "ImageObject",
+          url: `${siteConfig.siteUrl}/images/avatar.png`,
+          width: 150,
+          height: 150,
+        },
+      },
+    })} />
+  </Fragment>
+
+  <CategoryMenu currentPath="/" />
+  <div class="posts-container">
+    {posts.map((post) => (
+      <PostCard
+        slug={getSlug(post.id)}
+        title={post.data.title}
+        date={formatDate(post.data.date)}
+        emoji={post.data.emoji}
+        category={post.data.category}
+      />
+    ))}
+  </div>
+</BaseLayout>
+
+<style>
+  .posts-container {
+    margin-top: 1.5rem;
+  }
+</style>

@@ -1,0 +1,136 @@
+---
+import NewIcon from '../images/categories/new.svg';
+import DevIcon from '../images/categories/dev.svg';
+import LifeIcon from '../images/categories/life.svg';
+import OtherIcon from '../images/categories/other.svg';
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const categories = [
+  { name: 'New', icon: NewIcon, link: '/' },
+  { name: 'Dev', icon: DevIcon, link: '/category/dev/' },
+  { name: 'Life', icon: LifeIcon, link: '/category/life/' },
+  { name: 'Other', icon: OtherIcon, link: '/category/other/' },
+];
+---
+
+<nav class="category-nav">
+  <ul class="category-list">
+    {categories.map(({ name, icon: Icon, link }) => (
+      <li class:list={['category-item', { active: link === currentPath }]}>
+        <a href={link} class="cat-item__link">
+          <div class="cat-item__image">
+            <Icon />
+          </div>
+          <div class="cat-item__name">{name}</div>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .category-nav {
+    display: block;
+    margin: 0;
+  }
+
+  .category-list {
+    display: flex;
+  }
+
+  @media screen and (max-width: 500px) {
+    .category-list {
+      margin: 0 -20px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .category-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-list::after {
+      content: "";
+      width: 40px;
+      flex: 0 0 auto;
+    }
+  }
+
+  .category-item {
+    width: 70px;
+    margin: 0 20px 0 0;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 500px) {
+    .category-item {
+      width: 60px;
+      flex: 0 0 auto;
+      margin: 0 0 0 15px;
+    }
+  }
+
+  .cat-item__link {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .cat-item__image {
+    padding: 2px;
+    background: var(--color-black-light);
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .cat-item__image :global(svg),
+  .cat-item__image :global(img) {
+    position: relative;
+    background: var(--color-black-light);
+    border-radius: 50%;
+    display: block;
+    z-index: 2;
+  }
+
+  .cat-item__name {
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--color-gray);
+  }
+
+  @media screen and (max-width: 500px) {
+    .cat-item__name {
+      font-size: 12px;
+    }
+  }
+
+  .category-item.active .cat-item__image::after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--color-gradient);
+    animation: rotating 2s linear infinite;
+  }
+
+  .category-item.active .cat-item__image :global(svg),
+  .category-item.active .cat-item__image :global(img) {
+    border: solid 2px var(--color-background);
+  }
+
+  @keyframes rotating {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+</style>

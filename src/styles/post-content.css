@@ -1,0 +1,247 @@
+/* Post Content Styles */
+.post-content {
+  margin: 1.5em 0 1em;
+  line-height: 1.9;
+}
+
+.post-content a {
+  overflow-wrap: anywhere;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+}
+
+.post-content p {
+  margin-bottom: 1.5em;
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  margin: 40px 0 10px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.post-content h2 {
+  position: relative;
+  margin: 55px 0 12px;
+  padding: 5px 0 5px 17px;
+  font-size: 1.55em;
+}
+
+.post-content h2::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(0deg, #839E1A 0%, #839E1A 50%, #007AB8 50%, #007AB8 100%);
+}
+
+.post-content h3 {
+  margin: 55px 0 12px;
+  font-size: 1.45em;
+}
+
+.post-content h4 {
+  position: relative;
+  padding-left: 18px;
+  font-size: 1.1em;
+}
+
+.post-content ul,
+.post-content ol {
+  margin: 1em 0;
+}
+
+.post-content ul p,
+.post-content ol p {
+  margin: 0;
+}
+
+.post-content ul {
+  padding-left: 1.2em;
+}
+
+.post-content ul li {
+  margin: .4em 0;
+  list-style: disc;
+}
+
+.post-content ul ul {
+  margin: 0;
+}
+
+.post-content ol {
+  counter-reset: number;
+}
+
+.post-content ol > li {
+  list-style: none;
+  list-style-position: inside;
+  position: relative;
+  line-height: 25px;
+  padding-left: 34px;
+  margin: 1em 0;
+}
+
+.post-content ol > li::before {
+  display: inline-block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--color-highlight);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  line-height: 25px;
+  content: counter(number);
+  counter-increment: number;
+}
+
+.post-content strong {
+  font-weight: 700;
+}
+
+.post-content em {
+  font-style: italic;
+}
+
+.post-content del {
+  text-decoration: line-through;
+}
+
+.post-content hr {
+  display: block;
+  margin: 2em 0;
+  border: none;
+  border-top: dotted 3px #e1eaf3;
+}
+
+.post-content table {
+  display: block;
+  border-spacing: 2px;
+  border-collapse: separate;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  width: auto;
+  font-size: .9em;
+  line-height: 1.4;
+}
+
+.post-content table th {
+  background-color: var(--color-highlight);
+  color: #fff;
+  padding: 10px 12px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.post-content table th[align="center"] {
+  text-align: center;
+}
+
+.post-content table th[align="right"] {
+  text-align: right;
+}
+
+.post-content table td {
+  background-color: var(--color-whitesmoke);
+  color: var(--color-black-light);
+  padding: 10px 12px;
+}
+
+.post-content table thead tr th:first-child {
+  border-radius: 5px 0 0 0;
+}
+
+.post-content table thead tr th:last-child {
+  border-radius: 0 5px 0 0;
+}
+
+.post-content table tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 5px;
+}
+
+.post-content table tbody tr:last-child td:last-child {
+  border-radius: 0 0 5px 0;
+}
+
+.post-content blockquote {
+  margin: 2.3em 0;
+  font-style: italic;
+  background: var(--color-whitesmoke);
+  padding: 1em;
+}
+
+.post-content blockquote p {
+  margin: .3em 0;
+}
+
+.post-content img {
+  margin: 1em 0;
+  border: solid 1px #e5e8ea;
+  box-shadow: 0 2px 5px -1px rgba(0,0,0,.25);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Inline code */
+.post-content p > code,
+.post-content li > code {
+  display: inline-block;
+  background: #edf2f7;
+  padding: 0.1em 0.3em;
+  margin: 0 0.2em;
+  border-radius: 3px;
+  line-height: 1.4;
+  color: #454e63 !important;
+}
+
+/* Code blocks */
+.post-content pre {
+  margin: 1.5em 0;
+  padding: 26px 1.2em;
+  background: var(--color-black-light);
+  border-radius: 5px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media screen and (max-width: 500px) {
+  .post-content pre {
+    margin: 1.5em calc(-1 * var(--side-space-content-small));
+    border-radius: 0;
+  }
+}
+
+.post-content pre code {
+  white-space: pre;
+  display: block;
+  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-size: 14.5px;
+  color: #22aef1;
+  text-shadow: none;
+  hyphens: none;
+}
+
+/* Details/Summary */
+.post-content details {
+  margin: 1em 0;
+}
+
+.post-content summary {
+  cursor: pointer;
+  font-weight: 700;
+}

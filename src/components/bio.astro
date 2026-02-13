@@ -1,13 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 
-import { siteMetadata } from '../../astro.config.mjs';
+import { siteConfig } from '../config';
 import AvatorImage from '../images/bio/uetyo.png';
 import XIcon from '../images/bio/x.svg';
 import GitHubIcon from '../images/bio/github.svg';
 import SpeakerDeckIcon from '../images/bio/speaker_deck.svg';
 
-const { author, bioText, social } = siteMetadata;
+const { author, bioText, social } = siteConfig;
 ---
 
 <div class="bio-wrapper">
@@ -42,14 +42,14 @@ const { author, bioText, social } = siteMetadata;
   .bio-wrapper {
     position: sticky;
     top: 2em;
-    width: 300px; /* theme.sizes.bioWidth */
+    width: var(--size-bio-width);
     padding: 1.5em;
     font-size: 15.5px;
-    background: #2a2d35; /* theme.colors.blackLight */
+    background: var(--color-black-light);
     border-radius: 15px;
   }
 
-  @media screen and (max-width: 1100px) { /* theme.responsive.large */
+  @media screen and (max-width: 950px) {
     .bio-wrapper {
       position: relative;
       margin: 2em 0;
@@ -57,7 +57,7 @@ const { author, bioText, social } = siteMetadata;
     }
   }
 
-  @media screen and (max-width: 600px) { /* theme.responsive.small */
+  @media screen and (max-width: 500px) {
     .bio-wrapper {
       padding: 1.3em 1em;
     }
@@ -119,12 +119,12 @@ const { author, bioText, social } = siteMetadata;
     font-weight: 700;
     font-size: 0.9em;
     line-height: 30px;
-    color: #999; /* theme.colors.gray */
+    color: var(--color-gray);
     letter-spacing: 0.5px;
     text-decoration: none;
   }
 
   .bio-link:hover {
-    color: #007ab8; /* theme.colors.highlight */
+    color: var(--color-highlight);
   }
 </style>
