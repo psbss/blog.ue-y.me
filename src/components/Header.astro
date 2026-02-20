@@ -1,0 +1,73 @@
+---
+import HeaderLogo from '../images/header_title.svg';
+
+interface Props {
+  title: string;
+  isHome?: boolean;
+}
+
+const { title, isHome = false } = Astro.props;
+const HeadingTag = isHome ? 'h1' : 'h3';
+---
+
+<header class="header">
+  <div class="header-wrapper">
+    <div class="header-inner">
+      <HeadingTag>
+        <a href="/" class="logo-link">
+          <HeaderLogo class="logo" />
+        </a>
+      </HeadingTag>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    padding: 1.4rem 0 0.8rem 0;
+    width: 100%;
+  }
+
+  .header-wrapper {
+    max-width: var(--size-max-width);
+    margin: 0 auto;
+    padding: 0 var(--side-space-large);
+  }
+
+  @media screen and (max-width: 950px) {
+    .header-wrapper {
+      max-width: 760px;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .header-wrapper {
+      padding: 0 var(--side-space-small);
+    }
+  }
+
+  .header-inner {
+    position: relative;
+  }
+
+  .header-inner h1,
+  .header-inner h3 {
+    width: 100%;
+  }
+
+  .logo-link {
+    display: block;
+  }
+
+  .logo {
+    display: block;
+    width: 333px;
+    height: 76px;
+  }
+
+  @media screen and (max-width: 500px) {
+    .logo {
+      margin: 0 auto;
+    }
+  }
+</style>

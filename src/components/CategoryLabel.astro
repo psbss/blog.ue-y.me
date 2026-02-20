@@ -1,0 +1,47 @@
+---
+import { getCategoryBySlug } from '../config';
+
+interface Props {
+  slug: string;
+  isLink?: boolean;
+}
+
+const { slug, isLink = false } = Astro.props;
+const category = getCategoryBySlug(slug);
+const name = category?.name ?? slug;
+const color = category?.color ?? '#6d4bf5';
+---
+
+{isLink ? (
+  <span class="category-wrapper">
+    <a href={`/category/${slug}/`} class="category-text" style={`background: ${color};`}>
+      {name}
+    </a>
+  </span>
+) : (
+  <span class="category-wrapper">
+    <span class="category-text" style={`background: ${color};`}>
+      {name}
+    </span>
+  </span>
+)}
+
+<style>
+  .category-text {
+    display: inline;
+    padding: 3px 6px;
+    line-height: 1.2;
+    font-size: 12px;
+    border-radius: 2px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: 950px) {
+    .category-text {
+      font-size: 11px;
+      padding: 2.5px 6px;
+    }
+  }
+</style>

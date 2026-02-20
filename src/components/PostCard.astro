@@ -1,0 +1,96 @@
+---
+import CategoryLabel from './CategoryLabel.astro';
+
+interface Props {
+  slug: string;
+  title: string;
+  date: string;
+  emoji: string;
+  category: string;
+}
+
+const { slug, title, date, emoji, category } = Astro.props;
+---
+
+<div class="post-card">
+  <a href={`/${slug}/`} class="post-card-link">
+    <p class="post-card-emoji">{emoji}</p>
+    <div class="post-card-content">
+      <h3>{title}</h3>
+      <time>{date}</time>
+      <CategoryLabel slug={category} />
+    </div>
+  </a>
+</div>
+
+<style>
+  .post-card-link {
+    display: flex;
+    align-items: start;
+    padding: 1.4em 0;
+    color: #fff;
+    border-top: solid 1px var(--color-black-light);
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: 950px) {
+    .post-card-link {
+      padding: 1em 0;
+    }
+  }
+
+  .post-card-emoji {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 90px;
+    height: 90px;
+    background: var(--color-black-light);
+    border-radius: 12px;
+    font-size: 50px;
+    flex-shrink: 0;
+  }
+
+  @media screen and (max-width: 950px) {
+    .post-card-emoji {
+      width: 70px;
+      height: 70px;
+      font-size: 38px;
+    }
+  }
+
+  .post-card-content {
+    width: calc(100% - 90px);
+    padding-left: 20px;
+  }
+
+  .post-card-content h3 {
+    font-size: 1.5em;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .post-card-content time {
+    display: block;
+    margin-bottom: 0.2em;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+    color: var(--color-gray);
+  }
+
+  @media screen and (max-width: 950px) {
+    .post-card-content {
+      width: calc(100% - 70px);
+      padding-left: 15px;
+    }
+
+    .post-card-content h3 {
+      font-size: 16.5px;
+    }
+
+    .post-card-content time {
+      font-size: 12px;
+    }
+  }
+</style>

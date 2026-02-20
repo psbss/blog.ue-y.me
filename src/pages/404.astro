@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NotFoundSvg from '../images/others/404.svg';
+---
+
+<BaseLayout title="ページが見つかりません">
+  <div class="not-found">
+    <div class="hero-image">
+      <NotFoundSvg />
+    </div>
+    <div class="title">Not Found</div>
+    <a href="/" class="home-link">HOME</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found {
+    color: #fff;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 500px) {
+    .not-found {
+      margin-top: 2em;
+    }
+  }
+
+  .hero-image {
+    display: block;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .title {
+    font-size: 55px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .home-link {
+    margin-top: 0.7em;
+    display: inline-block;
+    padding: 0.3em 1em;
+    background: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-black-light);
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  .home-link:hover {
+    background: var(--color-highlight);
+    color: #fff;
+  }
+</style>

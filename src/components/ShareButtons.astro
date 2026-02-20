@@ -1,0 +1,95 @@
+---
+import XIcon from '../images/socials/x.svg';
+
+interface Props {
+  slug: string;
+  title: string;
+  emoji?: string;
+}
+
+const { slug, title, emoji = '🐱' } = Astro.props;
+const encodedTitle = encodeURIComponent(`${emoji}${title} | psnzbss`);
+const pageUrl = `https://blog.ue-y.me/${slug}/`;
+---
+
+<div class="share-wrapper">
+  <div class="share-title">SHARE</div>
+  <div class="share-links">
+    <a
+      href={`https://x.com/share?url=${pageUrl}&text=${encodedTitle}&via=psnzbss`}
+      rel="nofollow noopener noreferrer"
+      target="_blank"
+      class="share-link"
+    >
+      <XIcon class="x-icon" />
+    </a>
+    <a
+      href={`https://www.facebook.com/share.php?u=${pageUrl}`}
+      rel="nofollow noopener noreferrer"
+      target="_blank"
+      class="share-link share-link-text"
+      style="font-size: 20px;"
+    >
+      f
+    </a>
+    <a
+      href={`http://b.hatena.ne.jp/add?mode=confirm&url=${pageUrl}`}
+      rel="nofollow noopener noreferrer"
+      target="_blank"
+      class="share-link share-link-text"
+      style="font-size: 19px;"
+    >
+      B!
+    </a>
+  </div>
+</div>
+
+<style>
+  .share-wrapper {
+    margin: 1.8rem 0 0;
+    padding: 0 var(--side-space-content-large);
+    text-align: center;
+    color: var(--color-black-light);
+  }
+
+  @media screen and (max-width: 500px) {
+    .share-wrapper {
+      padding: 0 var(--side-space-content-small);
+    }
+  }
+
+  .share-title {
+    font-weight: 700;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+  }
+
+  .share-links {
+    margin-top: 0.5em;
+  }
+
+  .share-link {
+    display: inline-block;
+    margin: 0 6px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #fff;
+    background: var(--color-black-light);
+    font-weight: 700;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .share-link:hover {
+    transform: translateY(-2px);
+  }
+
+  .share-link :global(.x-icon) {
+    width: 24px;
+    height: 19px;
+    margin-top: 11px;
+  }
+</style>
