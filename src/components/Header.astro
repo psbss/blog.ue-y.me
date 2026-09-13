@@ -15,7 +15,7 @@ const HeadingTag = isHome ? 'h1' : 'h3';
     <div class="header-inner">
       <HeadingTag>
         <a href="/" class="logo-link">
-          <HeaderLogo class="logo" />
+          <HeaderLogo class="logo" role="img" aria-label={title} />
         </a>
       </HeadingTag>
     </div>
@@ -59,14 +59,14 @@ const HeadingTag = isHome ? 'h1' : 'h3';
     display: block;
   }
 
-  .logo {
+  :global(.logo) {
     display: block;
     width: 333px;
     height: 76px;
   }
 
   @media screen and (max-width: 500px) {
-    .logo {
+    :global(.logo) {
       margin: 0 auto;
     }
   }

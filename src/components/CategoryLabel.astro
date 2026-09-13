@@ -9,7 +9,7 @@ interface Props {
 const { slug, isLink = false } = Astro.props;
 const category = getCategoryBySlug(slug);
 const name = category?.name ?? slug;
-const color = category?.color ?? '#6d4bf5';
+const color = category?.color ?? '#B41870';
 ---
 
 {isLink ? (

@@ -1,5 +1,6 @@
 ---
 import CategoryLabel from './CategoryLabel.astro';
+import { parseEmoji } from '../lib/twemoji';
 
 interface Props {
   slug: string;
@@ -14,7 +15,7 @@ const { slug, title, date, emoji, category } = Astro.props;
 
 <div class="post-card">
   <a href={`/${slug}/`} class="post-card-link">
-    <p class="post-card-emoji">{emoji}</p>
+    <p class="post-card-emoji" set:html={parseEmoji(emoji)} />
     <div class="post-card-content">
       <h3>{title}</h3>
       <time>{date}</time>
@@ -52,11 +53,21 @@ const { slug, title, date, emoji, category } = Astro.props;
     flex-shrink: 0;
   }
 
+  .post-card-emoji :global(img.emoji) {
+    width: 45px;
+    height: 45px;
+  }
+
   @media screen and (max-width: 950px) {
     .post-card-emoji {
       width: 70px;
       height: 70px;
       font-size: 38px;
+    }
+
+    .post-card-emoji :global(img.emoji) {
+      width: 38px;
+      height: 38px;
     }
   }
 

@@ -12,7 +12,7 @@ const { author, bioText, social } = siteConfig;
 
 <div class="bio-wrapper">
   <div class="bio-header">
-    <Image src={AvatorImage} alt={author} class="avatar-image" />
+    <Image src={AvatorImage} width={140} height={140} alt={author} class="avatar-image" />
     <div class="bio-name">
       <a href={`https://x.com/${social.x}`} rel="nofollow noopener noreferrer" target="_blank">{author}</a>
     </div>
@@ -106,8 +106,8 @@ const { author, bioText, social } = siteConfig;
     gap: 1.5rem;
   }
 
-  .bio-links img,
-  .bio-links svg {
+  .bio-links :global(img),
+  .bio-links :global(svg) {
     display: block;
     margin: 0 auto;
     width: 40px;

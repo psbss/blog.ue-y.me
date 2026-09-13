@@ -7,13 +7,14 @@ import FollowBadge from '../components/FollowBadge.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
 import { siteConfig, getCategoryBySlug } from '../config';
 import { formatDate, getSlug } from '../lib/utils';
+import { parseEmoji } from '../lib/twemoji';
 import '../styles/post-content.css';
 
 export async function getStaticPaths() {
   const allPosts = (await getCollection('blog'))
     .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
-  // Build related posts map (max 5 per category, excluding self)
+  // Select the latest five in each category, then exclude the current post.
   const postsByCategory: Record<string, typeof allPosts> = {};
   for (const post of allPosts) {
     const cat = post.data.category;
@@ -23,8 +24,8 @@ export async function getStaticPaths() {
 
   return allPosts.map((post) => {
     const related = (postsByCategory[post.data.category] || [])
-      .filter((p) => p.id !== getSlug(post.id))
-      .slice(0, 4)
+      .slice(0, 5)
+      .filter((p) => p.id !== post.id)
       .map((p) => ({
         slug: getSlug(p.id),
         title: p.data.title,
@@ -33,7 +34,7 @@ export async function getStaticPaths() {
       }));
 
     return {
-      params: { slug: getSlug(getSlug(post.id)) },
+      params: { slug: getSlug(post.id) },
       props: { post, relatedPosts: related },
     };
   });
@@ -46,7 +47,7 @@ const formattedDate = formatDate(date);
 const categoryObj = getCategoryBySlug(category);
 const categoryName = categoryObj?.name ?? category;
 const pageUrl = `${siteConfig.siteUrl}/${getSlug(post.id)}/`;
-const dateFormatted = date.replace(/-/g, '-');
+const dateFormatted = date;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -103,9 +104,7 @@ const dateFormatted = date.replace(/-/g, '-');
   </Fragment>
 
   <section class="post-section">
-    <div class="hero-image">
-      <span class="emoji">{emoji}</span>
-    </div>
+    <div class="hero-image" set:html={parseEmoji(emoji, '😺')} />
     <div class="content-main">
       <time class="post-date">{formattedDate}</time>
       <h1 class="post-title">{title}</h1>
@@ -154,9 +153,9 @@ const dateFormatted = date.replace(/-/g, '-');
     }
   }
 
-  .hero-image .emoji {
-    font-size: 110px;
-    line-height: 1;
+  .hero-image :global(img.emoji) {
+    width: 110px;
+    height: 110px;
   }
 
   .content-main {

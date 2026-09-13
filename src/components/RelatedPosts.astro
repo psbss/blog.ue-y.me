@@ -1,4 +1,6 @@
 ---
+import { parseEmoji } from '../lib/twemoji';
+
 interface Post {
   slug: string;
   title: string;
@@ -18,7 +20,7 @@ const { posts } = Astro.props;
     {posts.map((post) => (
       <div class="related-card">
         <a href={`/${post.slug}/`} class="post-card-link">
-          <p class="post-card-emoji">{post.emoji}</p>
+          <p class="post-card-emoji" set:html={parseEmoji(post.emoji)} />
           <div class="post-card-content">
             <h5>{post.title}</h5>
             <time>{post.date}</time>
@@ -70,6 +72,11 @@ const { posts } = Astro.props;
     border-radius: 10px;
     font-size: 50px;
     flex-shrink: 0;
+  }
+
+  .post-card-emoji :global(img.emoji) {
+    width: 45px;
+    height: 45px;
   }
 
   .post-card-content {

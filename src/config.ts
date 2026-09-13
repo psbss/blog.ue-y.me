@@ -13,7 +13,7 @@ export const siteConfig = {
   categories: [
     { name: 'Dev', slug: 'dev', color: '#007ab8' },
     { name: 'Life', slug: 'life', color: '#839e1a' },
-    { name: 'Other', slug: 'other', color: '#6d4bf5' },
+    { name: 'Other', slug: 'other', color: '#B41870' },
   ] as const,
 };
 
