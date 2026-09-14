@@ -8,6 +8,7 @@ import { legacyMarkdown, externalLinks, imageSizes } from './src/lib/satteri-plu
 export default defineConfig({
   site: 'https://blog.ue-y.me',
   trailingSlash: 'always',
+
   markdown: {
     processor: satteri({
       mdastPlugins: [legacyMarkdown],
@@ -15,13 +16,16 @@ export default defineConfig({
     }),
     syntaxHighlight: 'prism',
   },
-  integrations: [sitemap()],
+
   image: {
     layout: 'constrained',
     responsiveStyles: true,
   },
+
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport'
   },
+
+  integrations: [sitemap()],
 });
