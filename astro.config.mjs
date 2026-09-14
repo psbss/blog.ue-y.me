@@ -1,23 +1,27 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import { unified } from '@astrojs/markdown-remark';
-import remarkGfm from 'remark-gfm';
-import legacyMarkdown from './src/lib/legacy-markdown.mjs';
-import rehypeExternalLinks from 'rehype-external-links';
+import { satteri } from '@astrojs/markdown-satteri';
+import { legacyMarkdown, externalLinks, imageSizes } from './src/lib/satteri-plugins.mjs';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://blog.ue-y.me',
   trailingSlash: 'always',
   markdown: {
-    processor: unified({
-      remarkPlugins: [remarkGfm, legacyMarkdown],
-      rehypePlugins: [
-        [rehypeExternalLinks, { target: '_blank', rel: ['nofollow', 'noopener', 'noreferrer'] }],
-      ],
+    processor: satteri({
+      mdastPlugins: [legacyMarkdown],
+      hastPlugins: [externalLinks, imageSizes],
     }),
     syntaxHighlight: 'prism',
   },
   integrations: [sitemap()],
+  image: {
+    layout: 'constrained',
+    responsiveStyles: true,
+  },
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport'
+  },
 });

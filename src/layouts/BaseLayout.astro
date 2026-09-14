@@ -3,6 +3,8 @@ import { siteConfig } from '../config';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Bio from '../components/bio.astro';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 import '../styles/global.css';
 
 interface Props {
@@ -52,12 +54,6 @@ const pageTitle = title
     <meta name="twitter:description" content={description} />
     <meta name="google-site-verification" content="tPbbYBIkS-hMJ6JCXihoxuipkMX5q1QnyQ-6R_kvkYs" />
 
-    <!-- Vercel Analytics -->
-    <script>
-      import '@vercel/analytics';
-      import '@vercel/speed-insights';
-    </script>
-
     <slot name="head" />
   </head>
   <body>
@@ -75,6 +71,8 @@ const pageTitle = title
       </div>
       <Footer />
     </div>
+    <Analytics />
+    <SpeedInsights />
   </body>
 </html>
 
