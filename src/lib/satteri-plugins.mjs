@@ -27,6 +27,22 @@ export const legacyMarkdown = defineMdastPlugin({
   },
 });
 
+// Declare the real rendered width of article images so the browser picks a
+// candidate from srcset that fits the 722px content column, not the viewport.
+// Astro only fills in a default `sizes` when the property is absent.
+export const imageSizes = defineHastPlugin({
+  name: 'image-sizes',
+  element: {
+    filter: ['img'],
+    visit(node, ctx) {
+      const src = node.properties?.src;
+      if (typeof src !== 'string' || !src.startsWith('.')) return;
+      if (node.properties?.sizes) return;
+      ctx.setProperty(node, 'sizes', '(min-width: 951px) 722px, calc(100vw - 40px)');
+    },
+  },
+});
+
 // Open external links in a new tab (formerly rehype-external-links).
 export const externalLinks = defineHastPlugin({
   name: 'external-links',

@@ -2,7 +2,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { satteri } from '@astrojs/markdown-satteri';
-import { legacyMarkdown, externalLinks } from './src/lib/satteri-plugins.mjs';
+import { legacyMarkdown, externalLinks, imageSizes } from './src/lib/satteri-plugins.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,9 +11,17 @@ export default defineConfig({
   markdown: {
     processor: satteri({
       mdastPlugins: [legacyMarkdown],
-      hastPlugins: [externalLinks],
+      hastPlugins: [externalLinks, imageSizes],
     }),
     syntaxHighlight: 'prism',
   },
   integrations: [sitemap()],
+  image: {
+    layout: 'constrained',
+    responsiveStyles: true,
+  },
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport'
+  },
 });
