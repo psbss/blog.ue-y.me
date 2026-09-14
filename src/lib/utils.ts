@@ -7,8 +7,8 @@ export function formatDate(dateStr: string): string {
 
 /**
  * Extract slug from content collection entry id.
- * e.g. "42tokyo/index.md" -> "42tokyo", "42tokyo" -> "42tokyo"
+ * e.g. "42tokyo/index.md" -> "42tokyo", "42tokyo/index" -> "42tokyo", "42tokyo" -> "42tokyo"
  */
 export function getSlug(id: string): string {
-  return id.replace(/\/index\.md$/, '').replace(/\.md$/, '');
+  return id.replace(/\/index(\.md)?$/, '').replace(/\.md$/, '');
 }
