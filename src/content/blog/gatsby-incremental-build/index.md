@@ -4,6 +4,7 @@ date: "2022-06-04"
 category: "dev"
 description: "Gatsby.js v4 から対応したビルド爆速化方法である Incremental Build を GitHub Actions 環境下で利用する方法についてまとめました"
 emoji: "⚙️"
+archived: true
 ---
 
 Gatsby.js の Version4 から対応した変更差分ビルド方式である「[Incremental Build](https://www.gatsbyjs.com/blog/2020-04-22-announcing-incremental-builds/)」をGitHub Actionsで実行する方法について解説します。

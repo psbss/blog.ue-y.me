@@ -4,6 +4,7 @@ date: "2022-06-18"
 category: "dev"
 description: "MacBookのスクリーンセーバをSimple Clock Screensaverを利用してカッコよくします。このスクリーンセーバは会社が管理する貸与PCでも設定可能です。"
 emoji: "🕒"
+archived: true
 ---
 
 Macが提供するデフォルトのスクリーンセーバはどれも動きが激しく、シンプルな時計を表示してほしい私としてはとても不満に思っていました。

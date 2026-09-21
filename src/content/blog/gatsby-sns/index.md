@@ -4,6 +4,7 @@ date: "2020-03-26"
 description: "『Gatsby 使い始めたのに、ソーシャルボタンないし使いづらい』そんなお悩みを React-Share で解決します"
 category: "dev"
 emoji: "💻"
+archived: true
 ---
 
 『Gatsby 使い始めたのに、SNS共有ボタンないし使いづらい』そんなお悩みを React-Share で解決します。
