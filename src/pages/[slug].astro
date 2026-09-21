@@ -53,7 +53,7 @@ const pageUrl = `${siteConfig.siteUrl}/${getSlug(post.id)}/`;
 const dateFormatted = date;
 ---
 
-<BaseLayout title={title} description={description} noindex={archived}>
+<BaseLayout title={title} description={description} ogType="article" publishedTime={date} noindex={archived}>
   <Fragment slot="head">
     <link rel="canonical" href={`https://blog.ue-y.me/${getSlug(post.id)}/`} />
     <script type="application/ld+json" set:html={JSON.stringify({
