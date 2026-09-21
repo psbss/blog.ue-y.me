@@ -4,6 +4,7 @@ date: "2021-01-28"
 description: "約6年間KeePassシリーズを利用しましたが、この度Bitwardenに完全移行しました。その理由と今後はBitwardenをオススメする理由について書いています。"
 category: "dev"
 emoji: "🔒"
+archived: true
 ---
 
 こんにちは。友人のセキュリティ意識向上に全力の上ちょ([@psnzbss](https://twitter.com/psnzbss))です。

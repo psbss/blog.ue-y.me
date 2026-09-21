@@ -4,6 +4,7 @@ date: "2020-04-12"
 description: ""
 category: "dev"
 emoji: "💻"
+archived: true
 ---
  
 ## 経緯
