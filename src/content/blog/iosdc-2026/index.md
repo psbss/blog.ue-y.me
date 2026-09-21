@@ -1,8 +1,8 @@
 ---
 title: "iOSDC Japan 2026に参加しました"
-date: "2026-09-17"
+date: "2026-09-21"
 category: "other"
-description: ""
+description: "iOSDC Japan 2026にパンフレット執筆者として参加しました。拝聴したトークで気になったものや、当日の動き、カンファレンスに対する感想などを記録として残します。"
 emoji: "🖋️"
 ---
 

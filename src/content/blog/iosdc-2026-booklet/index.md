@@ -1,8 +1,8 @@
 ---
-title: "iOSDC Japan 2026にてパンフレット記事を寄稿しました"
-date: "2026-09-17"
+title: "iOSDC Japan 2026にてパンフレット記事を執筆しました"
+date: "2026-09-13"
 category: "other"
-description: ""
+description: "iOSDC Japan 2026のパンフレットにて「今どきの画像アセット入稿：たった1枚の画像でアプリサイズが50MB増えた失敗から学ぶ最適化方法」という記事を執筆しました"
 emoji: "📖"
 ---
 
