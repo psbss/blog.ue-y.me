@@ -9,6 +9,7 @@ const blog = defineCollection({
     category: z.enum(['dev', 'life', 'other']),
     description: z.string().default(''),
     emoji: z.string().default('🐱'),
+    archived: z.boolean().default(false),
   }),
 });
 

@@ -5,6 +5,9 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="footer-wrapper">
     <div class="footer-inner">
+      <nav class="footer-nav">
+        <a href="/archive/">Archive</a>
+      </nav>
       <div>&copy; {year}, Yuki UEHARA All rights reserved.</div>
     </div>
   </div>
@@ -40,6 +43,10 @@ const year = new Date().getFullYear();
     border-top: solid 1px var(--color-black-light);
     color: var(--color-gray);
     font-size: 14px;
+  }
+
+  .footer-nav {
+    margin-bottom: 0.8em;
   }
 
   .footer-inner a {

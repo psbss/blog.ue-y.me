@@ -3,6 +3,15 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { satteri } from '@astrojs/markdown-satteri';
 import { legacyMarkdown, externalLinks, imageSizes } from './src/lib/satteri-plugins.mjs';
+import { getArchivedSlugs } from './src/lib/archived-slugs.mjs';
+
+const archivedSlugs = getArchivedSlugs();
+
+/** Keep archived posts and the archive index itself out of the sitemap. */
+function isIndexablePage(page) {
+  const path = new URL(page).pathname.replace(/^\/|\/$/g, '');
+  return path !== 'archive' && !archivedSlugs.has(path);
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,5 +36,5 @@ export default defineConfig({
     defaultStrategy: 'viewport'
   },
 
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: isIndexablePage })],
 });
