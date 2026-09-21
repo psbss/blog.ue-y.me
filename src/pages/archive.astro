@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { siteConfig } from '../config';
+import { formatDate, getSlug } from '../lib/utils';
+import { getArchivedPosts } from '../lib/posts';
+
+const posts = await getArchivedPosts();
+
+// Group by year, newest first.
+const postsByYear = posts.reduce<Record<string, typeof posts>>((acc, post) => {
+  const year = post.data.date.slice(0, 4);
+  (acc[year] ??= []).push(post);
+  return acc;
+}, {});
+const years = Object.keys(postsByYear).sort((a, b) => Number(b) - Number(a));
+---
+
+<BaseLayout title="Archive" description="アーカイブした記事の一覧です。" noindex={true}>
+  <Fragment slot="head">
+    <link rel="canonical" href={`${siteConfig.siteUrl}/archive/`} />
+  </Fragment>
+
+  <h1 class="archive-heading">Archive</h1>
+  <p class="archive-lead">
+    一覧から外した記事です。内容が古くなっている可能性があります。
+  </p>
+
+  {years.length === 0 ? (
+    <p class="archive-empty">アーカイブした記事はまだありません。</p>
+  ) : (
+    years.map((year) => (
+      <section class="archive-year">
+        <h2 class="archive-year__heading">{year}</h2>
+        {postsByYear[year].map((post) => (
+          <PostCard
+            slug={getSlug(post.id)}
+            title={post.data.title}
+            date={formatDate(post.data.date)}
+            emoji={post.data.emoji}
+            category={post.data.category}
+          />
+        ))}
+      </section>
+    ))
+  )}
+</BaseLayout>
+
+<style>
+  .archive-heading {
+    margin: 2rem 0 0.4em;
+    font-size: 32px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 44px;
+    letter-spacing: 1px;
+  }
+
+  .archive-lead {
+    margin: 0 0 1.5em;
+    color: var(--color-gray);
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .archive-empty {
+    color: var(--color-gray);
+    font-size: 15px;
+  }
+
+  .archive-year {
+    margin-bottom: 2.5em;
+  }
+
+  .archive-year__heading {
+    margin: 0 0 0.2em;
+    color: var(--color-silver);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+</style>

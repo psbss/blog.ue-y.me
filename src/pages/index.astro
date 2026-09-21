@@ -1,13 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 import CategoryMenu from '../components/CategoryMenu.astro';
 import { siteConfig } from '../config';
 import { formatDate, getSlug } from '../lib/utils';
+import { getVisiblePosts } from '../lib/posts';
 
-const posts = (await getCollection('blog'))
-  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const posts = await getVisiblePosts();
 ---
 
 <BaseLayout isHome={true}>

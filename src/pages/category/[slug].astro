@@ -1,22 +1,20 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import CategoryMenu from '../../components/CategoryMenu.astro';
 import { siteConfig, getCategoryBySlug } from '../../config';
 import { formatDate, getSlug } from '../../lib/utils';
+import { getVisiblePosts } from '../../lib/posts';
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
-  const categories = [...new Set(allPosts.map((p) => p.data.category))];
+  const posts = await getVisiblePosts();
+  const categories = [...new Set(posts.map((p) => p.data.category))];
 
   return categories.map((category) => ({
     params: { slug: category },
     props: {
       category,
-      posts: allPosts
-        .filter((p) => p.data.category === category)
-        .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()),
+      posts: posts.filter((p) => p.data.category === category),
     },
   }));
 }

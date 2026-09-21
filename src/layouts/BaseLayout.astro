@@ -12,6 +12,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   isHome?: boolean;
+  noindex?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   description = siteConfig.description,
   ogImage = `${siteConfig.siteUrl}/images/ogp_large.png`,
   isHome = false,
+  noindex = false,
 } = Astro.props;
 
 const pageTitle = title
@@ -43,6 +45,7 @@ const pageTitle = title
 
     <!-- SEO -->
     <title>{pageTitle}</title>
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="description" content={description} />
     <meta property="og:title" content={title || siteConfig.defaultTitle} />
     <meta property="og:description" content={description} />
