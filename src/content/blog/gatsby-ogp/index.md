@@ -4,6 +4,7 @@ date: "2020-04-09"
 description: "Gatsby.jsでSNSシェアボタンを設置したのに、OGP用画像を毎回作るのが面倒なのでビルド時に一緒に作れるようにしました。"
 category: "dev"
 emoji: "💻"
+archived: true
 ---
 生成するとこんな感じの画像が出来上がります
 

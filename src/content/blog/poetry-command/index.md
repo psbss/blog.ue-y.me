@@ -4,6 +4,7 @@ date: "2021-12-04"
 category: "dev"
 description: "PythonのパッケージマネージャであるPoetryで利用頻度の高いコマンドをまとめました。"
 emoji: "🐍"
+archived: true
 ---
 
 個人的な備忘録です。最新の情報は[公式サイト](https://python-poetry.org/docs/cli/)を確認してください。

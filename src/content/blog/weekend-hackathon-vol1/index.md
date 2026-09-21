@@ -4,6 +4,7 @@ date: "2021-11-29"
 category: "life"
 description: "GitHub Actionsを利用してPRのコメントでリリース制御を行えるようにしてみました。"
 emoji: "🥴"
+archived: true
 ---
 
 思い立ったら即行動、ということで週末ハッカソン開催しました〜🎉

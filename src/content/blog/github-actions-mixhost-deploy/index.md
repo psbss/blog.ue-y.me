@@ -4,6 +4,7 @@ date: "2020-06-15"
 description: "以前このブログをデプロイする際に利用した Github Actions ですが、久しぶりに利用したところ、SSH認証に手こずったので、方法をまとめておく。"
 category: "dev"
 emoji: "🔐"
+archived: true
 ---
 
 以前このブログをデプロイする際に利用した Github Actions ですが、久しぶりに利用したところ、SSH認証に手こずったので、方法をまとめておく。

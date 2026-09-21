@@ -4,6 +4,7 @@ date: "2020-03-22"
 description: "試行錯誤"
 category: "dev"
 emoji: "✏️"
+archived: true
 ---
 
 ブログを新しくしました。素晴らしくナウい構成だと思います。  
