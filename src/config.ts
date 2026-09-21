@@ -2,7 +2,7 @@ export const siteConfig = {
   title: 'MoreCuriosity',
   defaultTitle: 'More Curiosity | Uetyo',
   author: '上ちょ / uetyo',
-  bioText: '都内で働くiOSエンジニア(4年目)',
+  bioText: '都内で働くiOSエンジニア(5年目)',
   description: '辛い時は筋トレで追い込むiOSエンジニアです',
   siteUrl: 'https://blog.ue-y.me',
   social: {
