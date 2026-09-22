@@ -1,8 +1,8 @@
 ---
-title: "iOSDC2024に登壇した記事を書きました"
+title: "iOSDC Japan 2024に登壇した記事を書きました"
 date: "2024-09-04"
 category: "other"
-description: "ZennにiOSDC2024に登壇した記事を書きました"
+description: "ZennにiOSDC Japan 2024に登壇した記事を書きました"
 emoji: "📢"
 ---
 
