@@ -56,7 +56,7 @@ const dateFormatted = date;
 
 <BaseLayout title={title} description={description} ogType="article" publishedTime={date} noindex={archived}>
   <Fragment slot="head">
-    <link rel="canonical" href={`https://blog.ue-y.me/${getSlug(post.id)}/`} />
+    <link rel="canonical" href={pageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "http://schema.org",
       "@type": "BlogPosting",

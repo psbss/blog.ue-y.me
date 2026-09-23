@@ -1,11 +1,12 @@
 ---
 import XIcon from '../images/socials/x.svg';
+import { siteConfig } from '../config';
 ---
 
 <div class="follow">
-  <a href="https://x.com/psnzbss" rel="nofollow noopener noreferrer" target="_blank" class="follow-link">
+  <a href={`https://x.com/${siteConfig.social.x}`} rel="nofollow noopener noreferrer" target="_blank" class="follow-link">
     <XIcon class="follow-icon" />
-    Follow @psnzbss
+    Follow @{siteConfig.social.x}
   </a>
 </div>
 

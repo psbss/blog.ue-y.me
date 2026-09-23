@@ -1,5 +1,6 @@
 ---
 import XIcon from '../images/socials/x.svg';
+import { siteConfig } from '../config';
 
 interface Props {
   slug: string;
@@ -8,15 +9,15 @@ interface Props {
 }
 
 const { slug, title, emoji = '🐱' } = Astro.props;
-const encodedTitle = encodeURIComponent(`${emoji}${title} | psnzbss`);
-const pageUrl = `https://blog.ue-y.me/${slug}/`;
+const encodedTitle = encodeURIComponent(`${emoji}${title} | ${siteConfig.social.x}`);
+const pageUrl = `${siteConfig.siteUrl}/${slug}/`;
 ---
 
 <div class="share-wrapper">
   <div class="share-title">SHARE</div>
   <div class="share-links">
     <a
-      href={`https://x.com/share?url=${pageUrl}&text=${encodedTitle}&via=psnzbss`}
+      href={`https://x.com/share?url=${pageUrl}&text=${encodedTitle}&via=${siteConfig.social.x}`}
       rel="nofollow noopener noreferrer"
       target="_blank"
       class="share-link"
@@ -33,7 +34,7 @@ const pageUrl = `https://blog.ue-y.me/${slug}/`;
       f
     </a>
     <a
-      href={`http://b.hatena.ne.jp/add?mode=confirm&url=${pageUrl}`}
+      href={`https://b.hatena.ne.jp/add?mode=confirm&url=${pageUrl}`}
       rel="nofollow noopener noreferrer"
       target="_blank"
       class="share-link share-link-text"
