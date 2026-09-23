@@ -11,7 +11,7 @@ const posts = await getVisiblePosts();
 
 <BaseLayout isHome={true}>
   <Fragment slot="head">
-    <link rel="canonical" href="https://blog.ue-y.me" />
+    <link rel="canonical" href={`${siteConfig.siteUrl}/`} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "http://schema.org",
       "@type": "WebSite",
