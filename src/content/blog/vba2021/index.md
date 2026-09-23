@@ -203,17 +203,17 @@ vba-sample
 *.vbaproj linguist-language=INI
 
 # file encording
-*.bas working-tree-encoding=sjis
-*.dcm working-tree-encoding=sjis
-*.frm working-tree-encoding=sjis
+*.bas working-tree-encoding=cp932
+*.dcm working-tree-encoding=cp932
+*.frm working-tree-encoding=cp932
 
-*.bas diff=sjis
-*.dcm diff=sjis
-*.frm diff=sjis
+*.bas diff=cp932
+*.dcm diff=cp932
+*.frm diff=cp932
 
-*.bas encoding=sjis
-*.dcm encoding=sjis
-*.frm encoding=sjis
+*.bas encoding=cp932
+*.dcm encoding=cp932
+*.frm encoding=cp932
 ```
 
 ## VBA開発でGitHubを用いたチーム開発環境を構築する方法
