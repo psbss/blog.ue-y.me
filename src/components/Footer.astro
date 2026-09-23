@@ -9,6 +9,11 @@ const year = new Date().getFullYear();
         <a href="/archive/">Archive</a>
       </nav>
       <div>&copy; {year}, Yuki UEHARA All rights reserved.</div>
+      <div class="footer-credit">
+        Emoji graphics by
+        <a href="https://github.com/jdecked/twemoji" target="_blank" rel="noopener noreferrer">Twemoji</a>
+        (CC-BY 4.0)
+      </div>
     </div>
   </div>
 </footer>
@@ -52,5 +57,10 @@ const year = new Date().getFullYear();
   .footer-inner a {
     color: var(--color-gray);
     text-decoration: underline;
+  }
+
+  .footer-credit {
+    margin-top: 0.5em;
+    font-size: 12px;
   }
 </style>
