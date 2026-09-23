@@ -7,7 +7,7 @@ import FollowBadge from '../components/FollowBadge.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
 import { siteConfig, getCategoryBySlug } from '../config';
 import { formatDate, getSlug } from '../lib/utils';
-import { getAllPosts, getVisiblePosts } from '../lib/posts';
+import { getAllPosts, getVisiblePosts, isArchived } from '../lib/posts';
 import { parseEmoji } from '../lib/twemoji';
 import '../styles/post-content.css';
 
@@ -45,7 +45,8 @@ export async function getStaticPaths() {
 
 const { post, relatedPosts } = Astro.props;
 const { Content } = await render(post);
-const { title, description, date, category, emoji, archived } = post.data;
+const { title, description, date, category, emoji } = post.data;
+const archived = isArchived(post);
 const formattedDate = formatDate(date);
 const categoryObj = getCategoryBySlug(category);
 const categoryName = categoryObj?.name ?? category;
