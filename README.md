@@ -8,3 +8,4 @@ This is uetyo's Tech and Life blog.
 
 ## Note
 This blog design was created by [catnose’s blog](https://github.com/catnose99/CatKnows), which is published under the MIT License.
+Emoji graphics are from [Twemoji](https://github.com/jdecked/twemoji), which are licensed under CC-BY 4.0.

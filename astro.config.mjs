@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import { satteri } from '@astrojs/markdown-satteri';
 import { legacyMarkdown, externalLinks, imageSizes } from './src/lib/satteri-plugins.mjs';
 import { getArchivedSlugs } from './src/lib/archived-slugs.mjs';
+import { twemojiAssets } from './src/integrations/twemoji.mjs';
 
 const archivedSlugs = getArchivedSlugs();
 
@@ -36,5 +37,5 @@ export default defineConfig({
     defaultStrategy: 'viewport'
   },
 
-  integrations: [sitemap({ filter: isIndexablePage })],
+  integrations: [sitemap({ filter: isIndexablePage }), twemojiAssets()],
 });
