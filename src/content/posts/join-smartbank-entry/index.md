@@ -6,6 +6,6 @@ category: "activity"
 emoji: "🐶"
 ---
 
-入社時のオンボーディングの一貫として入社エントリを会社のブログに投稿しました。
+入社時のオンボーディングの一環として入社エントリを会社のブログに投稿しました。
 
 [株式会社スマートバンクに入社しました](https://blog.smartbank.co.jp/entry/uetyo-join-smartbank)

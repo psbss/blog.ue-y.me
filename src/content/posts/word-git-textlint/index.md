@@ -6,11 +6,11 @@ description: "大学生活最後の山場である卒業論文を執筆してい
 emoji: "🎓"
 ---
 
-> Qiita Advent Calender 2021 「[初めてのアドベントカレンダー](https://qiita.com/advent-calendar/2021/first-try)」の17日目の記事です。
+> Qiita Advent Calendar 2021 「[初めてのアドベントカレンダー](https://qiita.com/advent-calendar/2021/first-try)」の17日目の記事です。
 
-理系の学生の場合、論文はTex（LaTex）を利用して執筆する人が多い気がしますが、私の大学ではMicrosoft Office の Wordを利用して論文を執筆します。
+理系の学生の場合、論文はTeX（LaTeX）を利用して執筆する人が多い気がしますが、私の大学ではMicrosoft Office の Wordを利用して論文を執筆します。
 
-Texはテキストファイルなので、Textlint等の静的構文解析・チェックを利用することができますが、Wordファイル（.docx）はOpen XMLというフォーマットのファイル（実質バイナリファイル）のため、そのままの形式ではTextLintをすることができません。
+TeXはテキストファイルなので、Textlint等の静的構文解析・チェックを利用することができますが、Wordファイル（.docx）はOpen XMLというフォーマットのファイル（実質バイナリファイル）のため、そのままの形式ではTextLintをすることができません。
 
 ![これまでの執筆環境](./write-work-before.png)
 
@@ -76,7 +76,7 @@ Gitで差分を見やすくするためにオプションを追加して実行�
 ```bash
 $ pandoc test.docx -f docx -t gfm -o test.md --wrap=none --reference-links
 
-# --wrap : 折返しの設定（規定は72文字で折り返しするがNoneで無効化）
+# --wrap : 折返しの設定（既定は72文字で折り返しするがNoneで無効化）
 # --reference-links : リンクを最下部にまとめる
 ```
 ```markdown:title=test.md
@@ -91,7 +91,7 @@ Wordで書いた文章をPandocというライブラリを利用してマーク�
   [この記事]: https://blog.ue-y.me/word-git-textlint/
 ```
 
-無事にWordファイルからマークダウン形式のテキストファイルに変換することができました。Gitに乗せれば強力な差分管理が行えます。
+無事にWordファイルからマークダウン形式のテキストファイルに変換することができました。Gitに載せれば強力な差分管理が行えます。
 
 ### スクリプトを作ってGit Pushまで自動化する。
 毎回、長々としたコマンドを入力するのは面倒なので、スクリプトファイルを作成します（Mac / WSL向けシェルスクリプト）
@@ -165,13 +165,13 @@ Textlint 単体では特に何もできないので、有志で作られてい�
 - textlint-rule-ja-unnatural-alphabet
     - 不自然なアルファベットを検知する
 - textlint-rule-no-double-negative-ja
-    - 二重否定の禁止する
+    - 二重否定を禁止する
 - textlint-rule-no-dropping-the-ra
     - ら抜き言葉を検知する
 - textlint-rule-no-mix-dearu-desumasu
     - 敬体(ですます調)と常体(である調)の混在をチェックする
 - textlint-rule-no-mixed-zenkaku-and-hankaku-alphabet
-    - 全角と半角アルファベットを混在をチェックする
+    - 全角と半角アルファベットの混在をチェックする
 - textlint-rule-prefer-tari-tari
     - 例示・並列表現の「～たり、（～たり）する」をチェックする
 - @textlint-ja/textlint-rule-no-synonyms
@@ -264,7 +264,7 @@ jobs:
 
 ## 個人的な使い方
 
-執筆する際は `draft/日付` というブランチを切り、執筆を行います。週次で担当教員に提出する必要があるため、提出前に `draft/日付` を `main` ブランチに向けてPRを作り、GHAをクリアすればマージします。GHAのテストで失敗した場合は修正を繰り返します。翌週、新しく `draft/日付` ブランチを切り、執筆繰り返します。
+執筆する際は `draft/日付` というブランチを切り、執筆を行います。週次で担当教員に提出する必要があるため、提出前に `draft/日付` を `main` ブランチに向けてPRを作り、GHAをクリアすればマージします。GHAのテストで失敗した場合は修正を繰り返します。翌週、新しく `draft/日付` ブランチを切り、執筆を繰り返します。
 
 ## 補足
 本当はMarkdownで執筆して、最後にWord化して提出したかったのですが、教員の指示があり以上のような構成になっています。
