@@ -1,5 +1,5 @@
 ---
-title: "iOSDC Japan 2026で頂いたノベルティについて紹介と感想"
+title: "iOSDC Japan 2026で頂いたノベルティの紹介と感想"
 date: "2026-09-22"
 category: "other"
 description: "iOSDC Japan 2026にてスポンサーの方やカンファレンス側から頂いたノベルティ（Swag）についての紹介と感想"
