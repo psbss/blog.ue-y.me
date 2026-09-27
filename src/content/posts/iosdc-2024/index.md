@@ -1,8 +1,8 @@
 ---
-title: "iOSDC Japan 2024に登壇した記事を書きました"
+title: "iOSDC Japan 2024にて登壇しました"
 date: "2024-09-04"
-category: "other"
-description: "ZennにiOSDC Japan 2024に登壇した記事を書きました"
+category: "activity"
+description: "ZennにiOSDC Japan 2024にて登壇しました"
 emoji: "📢"
 ---
 
@@ -10,10 +10,8 @@ emoji: "📢"
 
 `youtube:https://www.youtube.com/embed/54EsJ10WP4M?si=SEcIcnajr5FDVI0D`
 
-先日、国内最大級のiOSカンファレンスであるiOSDC2024にルーキーズLT枠として登壇した記事を投稿しました。
+2024年8月22日(木)〜24日(土)に東京、早稲田大学理工学部西早稲田キャンパスにて、国内最大級のiOSを主軸とするカンファレンスである[iOSDC Japan 2024](https://iosdc.jp/2024/)が開催され、ルーキーズLT枠として登壇しました。
 
-今年のWWDCにて正式に公開された SwfitTesting をチームに導入することを早期に意思決定したので、その移行作業や移行時に直面した問題のトラブルシューティングを発表しました。
-
-発表時点でクラシルリワードのテストコード全体の 90% を移行完了しました。残りの10％については別途問題があり徐々に移行している状況です。
+AppleはWWDC 2024にて、[SwiftTesting](https://developer.apple.com/jp/xcode/swift-testing/)という新しいテストフレームワークを公開しました。クラシルリワードでは正式発表前にいち早く導入を決定していました。iOSDCでは新しいフレームワークへの移行作業や移行時に直面した問題のトラブルシューティングについて発表しました。
 
 記事はこちら：[iOSDC Japan 2024 に登壇しました](https://zenn.dev/dely_jp/articles/0a5ab5913a76e3)

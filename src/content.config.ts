@@ -4,7 +4,7 @@ import { glob } from 'astro/loaders';
 const postSchema = z.object({
   title: z.string(),
   date: z.string(),
-  category: z.enum(['dev', 'life', 'other']),
+  category: z.enum(['dev', 'life', 'activity', 'other']),
   description: z.string().default(''),
   emoji: z.string().default('🐱'),
 });

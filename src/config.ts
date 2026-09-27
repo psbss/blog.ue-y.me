@@ -13,11 +13,12 @@ export const siteConfig = {
   categories: [
     { name: 'Dev', slug: 'dev', color: '#007ab8' },
     { name: 'Life', slug: 'life', color: '#839e1a' },
+    { name: 'Activity', slug: 'activity', color: '#e2a636' },
     { name: 'Other', slug: 'other', color: '#B41870' },
   ] as const,
 };
 
-export type CategorySlug = 'dev' | 'life' | 'other';
+export type CategorySlug = 'dev' | 'life' | 'activity' | 'other';
 
 export function getCategoryBySlug(slug: string) {
   return siteConfig.categories.find((cat) => cat.slug === slug);
