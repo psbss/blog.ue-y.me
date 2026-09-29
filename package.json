@@ -15,10 +15,10 @@
     "@astrojs/sitemap": "^3.7.4",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "astro": "^7.3.3"
+    "astro": "^7.3.4"
   },
   "devDependencies": {
-    "@astrojs/markdown-satteri": "^0.4.1",
+    "@astrojs/markdown-satteri": "^0.4.2",
     "@twemoji/api": "^17.0.3",
     "satteri": "^0.10.5",
     "sharp": "^0.35.4"
